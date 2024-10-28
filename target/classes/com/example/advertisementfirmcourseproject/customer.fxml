@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="560.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.advertisementfirmcourseproject.CustomerController">
+   <children>
+      <Label fx:id="helloLabel" layoutX="14.0" layoutY="14.0" text="Label">
+         <font>
+            <Font name="Times New Roman" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="exitBtn" focusTraversable="false" layoutX="14.0" layoutY="188.0" mnemonicParsing="false" onAction="#exit" prefHeight="56.0" prefWidth="141.0" text="Вийти" />
+      <Button fx:id="viewDesignsBtn" focusTraversable="false" layoutX="14.0" layoutY="43.0" mnemonicParsing="false" onAction="#viewDesignsBtn" prefHeight="56.0" prefWidth="141.0" text="Переглянути дизайни" />
+      <Button fx:id="viewContractsBtn" focusTraversable="false" layoutX="14.0" layoutY="115.0" mnemonicParsing="false" onAction="#viewContractsBtn" prefHeight="56.0" prefWidth="141.0" text="Переглянути договори" />
+      <AnchorPane fx:id="viewDesignsAnchorPane" focusTraversable="true" layoutX="193.0" layoutY="61.0" prefHeight="492.0" prefWidth="400.0" />
+   </children>
+</AnchorPane>
