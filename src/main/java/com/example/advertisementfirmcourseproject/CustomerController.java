@@ -165,17 +165,14 @@ public class CustomerController {
         Statement stmtForId;
         ResultSet rsForId;
 
-        for (int i = 0; i<=3; i++){
         stmtForId = connection.createStatement();
         String sql = "SELECT contracts.contracts_id FROM contracts, customers WHERE customers.customer_id = contracts.customer_id AND customers.customer_initials = '" + initials +"';";
         rsForId = stmtForId.executeQuery(sql);
-
 
             while (rsForId.next()) {
                 String contractId = rsForId.getString("contracts_id");
                 contractsInfoGetter(connection, contractId);
             }
-        }
 
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(vbox);
@@ -254,23 +251,13 @@ public class CustomerController {
 
         ContractInfoGetter contractInfoGetter = new ContractInfoGetter(contractName);
 
-
         TextFlow contractInfoTF = new TextFlow();
         Text text = new Text(contractInfoGetter.getContractContent());
-        text.setStyle("-fx-fill: #333333; -fx-font-size: 14px;"); // Стиль тексту
+        text.setStyle("-fx-fill: #333333; -fx-font-size: 14px;");
         contractInfoTF.getChildren().add(text);
 
         contractInfoTF.setPrefWidth(330);
         contractInfoTF.setMaxWidth(330);
-  /*
-        TextFlow contractInfoTF = new TextFlow();
-        contractInfoTF.getChildren().add(new Text(contractInfoGetter.getContractContent()));
-        contractInfoTF.setLayoutX(10);
-        contractInfoTF.setLayoutY(90);
-        contractInfoTF.setPrefWidth(330);
-        contractInfoTF.setWrapText(true);
-        contractInfoTF.setStyle("-fx-text-fill: #333333; -fx-font-size: 14px; -fx-alignment: JUSTIFY;");
-        pane.getChildren().add(contractInfoTF);*/
 
         VBox textContainer = new VBox();
         textContainer.getChildren().add(contractInfoTF);
@@ -281,10 +268,6 @@ public class CustomerController {
         AnchorPane.setBottomAnchor(textContainer, 0.0);
 
         pane.getChildren().add(textContainer);
-
-        /*AnchorPane.setTopAnchor(contractInfoTF, 80.0);
-        AnchorPane.setBottomAnchor(contractInfoTF, 50.0);*/
-
         return pane;
     }
 }
