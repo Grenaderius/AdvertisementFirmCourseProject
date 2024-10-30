@@ -6,6 +6,7 @@ import SQL.PostgreSQLConnection;
 import com.example.advertisementfirmcourseproject.CustomerController;
 import com.example.advertisementfirmcourseproject.HelloApplication;
 import com.example.advertisementfirmcourseproject.DesignerController;
+import com.example.advertisementfirmcourseproject.OwnerController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -44,10 +45,26 @@ public class CheckDataForLogin {
                 String loginFormDB = rs.getString("owner_initials");
                 String passFromDB = rs.getString("pass");
 
-                if(loginFormDB.equals(login) && passFromDB.equals(pass)) return "Є власник";
+                if(loginFormDB.equals(login) && passFromDB.equals(pass)){
+                    stage.close();
+
+                    stage = new Stage();
+                    fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("owner.fxml"));
+                    Scene scene = new Scene(fxmlLoader.load(), 600, 560);
+                    stage.setTitle(login);
+                    stage.setScene(scene);
+
+                    //встановлення ініціалів на лейбл
+                    OwnerController controller = fxmlLoader.getController();
+                    controller.setInitials(login);
+
+                    stage.show();
+
+                    return "Є власник";
+                }
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         } finally {
             try{

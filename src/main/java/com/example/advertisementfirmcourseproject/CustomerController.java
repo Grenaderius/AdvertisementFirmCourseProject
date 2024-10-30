@@ -224,7 +224,7 @@ public class CustomerController {
         Label employeeInitialsLabel = new Label(employeeInitials);
         employeeInitialsLabel.setLayoutX(10);
         employeeInitialsLabel.setLayoutY(24);
-        employeeInitialsLabel.setStyle("-fx-text-fill: #333333; -fx-font-size: 18px;");
+        employeeInitialsLabel.setStyle("-fx-text-fill: #333333; -fx-font-size: 16px;");
         contractNameLabel.setWrapText(true);
         contractNameLabel.setMaxWidth(368);
         pane.getChildren().add(employeeInitialsLabel);
