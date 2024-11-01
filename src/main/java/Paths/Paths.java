@@ -4,6 +4,7 @@ public class Paths {
     private final String projectPath = System.getProperty("user.dir");
     private final String imagesPath = projectPath + "\\src\\main\\resources\\Images\\";
     private final String contractsPath = projectPath + "\\src\\main\\resources\\contracts\\";
+    private final String reportsPath = projectPath + "\\src\\main\\resources\\reports\\";
 
     public String getProjectPath() {
         return projectPath;
@@ -15,5 +16,9 @@ public class Paths {
 
     public String getContractsPath() {
         return contractsPath;
+    }
+
+    public String getReportsPath(){
+        return reportsPath;
     }
 }
