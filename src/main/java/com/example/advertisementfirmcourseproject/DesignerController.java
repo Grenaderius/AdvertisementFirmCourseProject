@@ -161,7 +161,7 @@ public class DesignerController {
         Stage stage = (Stage) noBtn.getScene().getWindow();
         stage.close();
 
-        HelloApplication helloApplication = new HelloApplication();
-        helloApplication.start(stage);
+        AdvertisementFirm advertisementFirm = new AdvertisementFirm();
+        advertisementFirm.start(stage);
     }
 }

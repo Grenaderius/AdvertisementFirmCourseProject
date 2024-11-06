@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class HelloController {
+public class LoginController {
     private final CheckDataForLogin checkDataForLogin = new CheckDataForLogin();
     private Stage stage;
 

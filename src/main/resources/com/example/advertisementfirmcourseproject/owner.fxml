@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="560.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.advertisementfirmcourseproject.OwnerController">
    <children>
       <Button fx:id="exitBtn" focusTraversable="false" layoutX="14.0" layoutY="252.0" mnemonicParsing="false" onAction="#exit" prefHeight="56.0" prefWidth="153.0" text="Вийти" />
-      <Button fx:id="viewCustomersBtn" focusTraversable="false" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="153.0" text="Переглянути замовників" />
+      <Button fx:id="viewCustomersBtn" focusTraversable="false" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" onAction="#onCustomersViewBtn" prefHeight="56.0" prefWidth="153.0" text="Переглянути замовників" />
       <Button fx:id="viewContractsBtn" focusTraversable="false" layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#onContractsViewBtn" prefHeight="56.0" prefWidth="153.0" text="Переглянути договори" />
       <Label fx:id="initialsLabel" layoutX="14.0" layoutY="14.0" maxWidth="550" text="Label" wrapText="true">
          <font>
@@ -16,6 +16,6 @@
          </font>
       </Label>
       <AnchorPane fx:id="viewAnchorPane" focusTraversable="true" layoutX="196.0" layoutY="63.0" prefHeight="492.0" prefWidth="400.0" />
-      <Button fx:id="viewReportsBtn" focusTraversable="false" layoutX="14.0" layoutY="183.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="153.0" text="Переглянути звіти" />
+      <Button fx:id="viewReportsBtn" focusTraversable="false" layoutX="14.0" layoutY="183.0" mnemonicParsing="false" onAction="#onReportsViewBtn" prefHeight="56.0" prefWidth="153.0" text="Переглянути звіти" />
    </children>
 </AnchorPane>

@@ -1,6 +1,7 @@
 package SQL.InteractionsInterface.CustomerInteractions;
 
-import FileInfoGetters.ContractInfoGetter;
+import FileInfoGetters.FilesInfoGetter;
+import Paths.Paths;
 import SQL.InteractionsInterface.SQLInteractions;
 import SQL.PostgreSQLConnection;
 import javafx.scene.control.Label;
@@ -120,10 +121,11 @@ public class SQLCustomerContractsInteractions implements SQLInteractions {
         contractLabel.setMaxWidth(368);
         pane.getChildren().add(contractLabel);
 
-        ContractInfoGetter contractInfoGetter = new ContractInfoGetter(contractName);
+        FilesInfoGetter filesInfoGetter = new FilesInfoGetter();
+        Paths paths = new Paths();
 
         TextFlow contractInfoTF = new TextFlow();
-        Text text = new Text(contractInfoGetter.getContractContent());
+        Text text = new Text(filesInfoGetter.getContent(paths.getContractsPath(), contractName));
         text.setStyle("-fx-fill: #333333; -fx-font-size: 14px;");
         contractInfoTF.getChildren().add(text);
 

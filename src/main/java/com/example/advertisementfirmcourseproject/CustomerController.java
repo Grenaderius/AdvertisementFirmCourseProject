@@ -37,8 +37,8 @@ public class CustomerController {
         Stage stage = (Stage) exitBtn.getScene().getWindow();
         stage.close();
 
-        HelloApplication helloApplication = new HelloApplication();
-        helloApplication.start(stage);
+        AdvertisementFirm advertisementFirm = new AdvertisementFirm();
+        advertisementFirm.start(stage);
     }
 
     @FXML

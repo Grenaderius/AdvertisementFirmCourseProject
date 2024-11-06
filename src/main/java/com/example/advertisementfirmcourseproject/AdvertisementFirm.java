@@ -7,18 +7,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class AdvertisementFirm extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AdvertisementFirm.class.getResource("advertisement-firm.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 330);
         stage.setTitle("Advertisement firm app");
         stage.setScene(scene);
         stage.show();
 
-        HelloController helloController = fxmlLoader.getController();
-        helloController.setStage(stage);
+        LoginController loginController = fxmlLoader.getController();
+        loginController.setStage(stage);
     }
 
     public static void main(String[] args) {

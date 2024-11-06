@@ -1,6 +1,8 @@
 package com.example.advertisementfirmcourseproject;
 
 import SQL.InteractionsInterface.OwnerInteractions.SQLOwnerContractsInteractions;
+import SQL.InteractionsInterface.OwnerInteractions.SQLOwnerCustomerInteractions;
+import SQL.InteractionsInterface.OwnerInteractions.SQLOwnerReportsInteractions;
 import SQL.InteractionsInterface.SQLInteractions;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class OwnerController {
+    private SQLInteractions sqlInteractions;
     private String initials;
 
     @FXML
@@ -36,13 +39,27 @@ public class OwnerController {
         Stage stage = (Stage) exitBtn.getScene().getWindow();
         stage.close();
 
-        HelloApplication helloApplication = new HelloApplication();
-        helloApplication.start(stage);
+        AdvertisementFirm advertisementFirm = new AdvertisementFirm();
+        advertisementFirm.start(stage);
     }
 
     @FXML
     private void onContractsViewBtn() throws SQLException, IOException {
-        SQLInteractions sqlInteractions = new SQLOwnerContractsInteractions(viewAnchorPane);
+        sqlInteractions = new SQLOwnerContractsInteractions(viewAnchorPane);
         sqlInteractions.createView();
     }
+
+    @FXML
+    private void onCustomersViewBtn() throws SQLException, IOException {
+        sqlInteractions = new SQLOwnerCustomerInteractions(viewAnchorPane);
+        sqlInteractions.createView();
+    }
+
+    @FXML
+    private void onReportsViewBtn() throws SQLException, IOException {
+        sqlInteractions = new SQLOwnerReportsInteractions(viewAnchorPane);
+        sqlInteractions.createView();
+    }
+
+
 }

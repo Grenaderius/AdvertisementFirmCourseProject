@@ -4,7 +4,7 @@ import ImageChangers.ImageSizeChanger;
 import Paths.Paths;
 import SQL.PostgreSQLConnection;
 import com.example.advertisementfirmcourseproject.CustomerController;
-import com.example.advertisementfirmcourseproject.HelloApplication;
+import com.example.advertisementfirmcourseproject.AdvertisementFirm;
 import com.example.advertisementfirmcourseproject.DesignerController;
 import com.example.advertisementfirmcourseproject.OwnerController;
 import javafx.fxml.FXMLLoader;
@@ -49,7 +49,7 @@ public class CheckDataForLogin {
                     stage.close();
 
                     stage = new Stage();
-                    fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("owner.fxml"));
+                    fxmlLoader = new FXMLLoader(AdvertisementFirm.class.getResource("owner.fxml"));
                     Scene scene = new Scene(fxmlLoader.load(), 600, 560);
                     stage.setTitle(login);
                     stage.setScene(scene);
@@ -98,7 +98,7 @@ public class CheckDataForLogin {
                     stage.close();
 
                     stage = new Stage();
-                    fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("designer.fxml"));
+                    fxmlLoader = new FXMLLoader(AdvertisementFirm.class.getResource("designer.fxml"));
                     Scene scene = new Scene(fxmlLoader.load(), 600, 560);
                     stage.setTitle(login);
                     stage.setScene(scene);
@@ -185,7 +185,7 @@ public class CheckDataForLogin {
 
 
                     stage = new Stage();
-                    fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("customer.fxml"));
+                    fxmlLoader = new FXMLLoader(AdvertisementFirm.class.getResource("customer.fxml"));
                     Scene scene = new Scene(fxmlLoader.load(), 600, 560);
                     stage.setTitle(login);
                     stage.setScene(scene);
