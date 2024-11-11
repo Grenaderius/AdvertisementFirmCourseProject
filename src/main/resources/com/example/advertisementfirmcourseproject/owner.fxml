@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="560.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.advertisementfirmcourseproject.OwnerController">
+<AnchorPane prefHeight="560.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.advertisementfirmcourseproject.UserControllers.OwnerController">
    <children>
       <Button fx:id="exitBtn" focusTraversable="false" layoutX="14.0" layoutY="252.0" mnemonicParsing="false" onAction="#exit" prefHeight="56.0" prefWidth="153.0" text="Вийти" />
       <Button fx:id="viewCustomersBtn" focusTraversable="false" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" onAction="#onCustomersViewBtn" prefHeight="56.0" prefWidth="153.0" text="Переглянути замовників" />

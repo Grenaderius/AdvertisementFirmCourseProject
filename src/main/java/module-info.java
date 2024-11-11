@@ -16,4 +16,8 @@ module com.example.advertisementfirmcourseproject {
 
     opens com.example.advertisementfirmcourseproject to javafx.fxml;
     exports com.example.advertisementfirmcourseproject;
+    exports com.example.advertisementfirmcourseproject.LoginController;
+    opens com.example.advertisementfirmcourseproject.LoginController to javafx.fxml;
+    exports com.example.advertisementfirmcourseproject.UserControllers;
+    opens com.example.advertisementfirmcourseproject.UserControllers to javafx.fxml;
 }

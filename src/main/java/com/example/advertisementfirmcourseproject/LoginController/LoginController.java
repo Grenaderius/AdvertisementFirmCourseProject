@@ -1,4 +1,4 @@
-package com.example.advertisementfirmcourseproject;
+package com.example.advertisementfirmcourseproject.LoginController;
 
 import Login.CheckDataForLogin;
 import javafx.fxml.FXML;

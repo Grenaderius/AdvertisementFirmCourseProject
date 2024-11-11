@@ -1,9 +1,10 @@
-package com.example.advertisementfirmcourseproject;
+package com.example.advertisementfirmcourseproject.UserControllers;
 
 import ImageChangers.ImageSizeChanger;
 import Paths.Paths;
 import SQL.InteractionsInterface.DesignerInteractions.SQLDesignerInteractions;
 import SQL.PostgreSQLConnection;
+import com.example.advertisementfirmcourseproject.AdvertisementFirm;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -59,73 +60,94 @@ public class DesignerController {
     private void sendDesign(){
         //даємо можливість користувачу завантажити файл
         FileChooser fileChooser = new FileChooser();
+        surelySendLabel.setVisible(false);
+        surelySendLabel.setText("Ви точно хочете передати цей дизайн?");
+        surelySendLabel.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
 
         FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Зображення (jpg, png)", "*.jpg", "*.jpeg", "*.png");
         fileChooser.getExtensionFilters().add(imageFilter);
         Stage stage = (Stage) imageViewForDesigns.getScene().getWindow();
         File file = fileChooser.showOpenDialog(stage);
 
-        imagePathFromImageView = file.getAbsolutePath();
+        try {
+            imagePathFromImageView = file.getAbsolutePath();
+            yesBtn.setVisible(true);
+            noBtn.setVisible(true);
+            contractNumTF.setVisible(true);
+            contractNumbLabel.setVisible(true);
+            imageViewForDesigns.setVisible(true);
 
             try {
                 setImage(imageSizeChanger.changeSize(file, 400, 400));
             } catch (Exception e) {
-                surelySendLabel.setVisible(true);
                 surelySendLabel.setText("Помилка! Не вдалося завантажити зображення!!!");
+                surelySendLabel.setStyle("-fx-text-fill: red; -fx-font-size: 14px;");
             }
 
-        surelySendLabel.setVisible(true);
-        yesBtn.setVisible(true);
-        noBtn.setVisible(true);
-        contractNumTF.setVisible(true);
-        contractNumbLabel.setVisible(true);
-        imageViewForDesigns.setVisible(true);
+        } catch (Exception e) {
+            surelySendLabel.setText("Вибрано не правильний тип зображення!!!");
+            surelySendLabel.setStyle("-fx-text-fill: red; -fx-font-size: 14px;");
+        }
 
+
+
+        surelySendLabel.setVisible(true);
         viewDesignsAnchorPane.setVisible(false);
     }
 
     @FXML
-    private void yesSendBtn() throws IOException, SQLException {
+    private void yesSendBtn() throws IOException {
+        surelySendLabel.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
+
         if(contractNumTF.getText().isEmpty()){
             surelySendLabel.setText("Уведіть номер договору!!!");
         }else {
             File file = new File(imagePathFromImageView);
             String imgName = file.getName();
 
-            Path pathToImg = file.toPath();
-            Path pathToSave = new File(paths.getImagesPath() + imgName).toPath();
-            Files.copy(pathToImg, pathToSave, StandardCopyOption.REPLACE_EXISTING);
-
             Connection connection = postgreSQLConnection.connect();
             Statement stmt;
             ResultSet rs;
 
             //отримуємо ід дизайнера
-            stmt = connection.createStatement();
-            String sql = "Select designer_id from designers where designer_initials='" + initials + "' ;";
-            rs = stmt.executeQuery(sql);
-            int initialsId = 0;
+            try {
+                stmt = connection.createStatement();
 
-            while(rs.next()) {
-                initialsId = Integer.parseInt(rs.getString("designer_id"));
+                String sql = "Select designer_id from designers where designer_initials='" + initials + "' ;";
+                rs = stmt.executeQuery(sql);
+                int initialsId = 0;
+
+                while(rs.next()) {
+                    initialsId = Integer.parseInt(rs.getString("designer_id"));
+                }
+
+                //додаємо інформацію до бд
+                sql = "INSERT INTO designs (design_name, designer_id, contracts_id) VALUES (?, ?, ?);";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+                preparedStatement.setString(1, imgName);
+                preparedStatement.setInt(2, initialsId);
+                preparedStatement.setInt(3, Integer.parseInt(contractNumTF.getText()));
+
+                preparedStatement.executeUpdate();
+
+                surelySendLabel.setText("Готово!!!");
+                connection.close();
+
+                Path pathToImg = file.toPath();
+                Path pathToSave = new File(paths.getImagesPath() + imgName).toPath();
+                Files.copy(pathToImg, pathToSave, StandardCopyOption.REPLACE_EXISTING);
+            } catch (SQLException e) {
+                surelySendLabel.setVisible(true);
+                surelySendLabel.setText("Сталася помилка при спробі зберегти зображення!!!");
+                surelySendLabel.setStyle("-fx-text-fill: RED; -fx-font-size: 14px;");
             }
 
-            //додаємо інформацію до бд
-            sql = "INSERT INTO designs (design_name, designer_id, contracts_id) VALUES (?, ?, ?);";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            preparedStatement.setString(1, imgName);
-            preparedStatement.setInt(2, initialsId);
-            preparedStatement.setInt(3, Integer.parseInt(contractNumTF.getText()));
-
-            preparedStatement.executeUpdate();
-
-            surelySendLabel.setText("Готово!!!");
+            contractNumTF.setVisible(false);
             yesBtn.setVisible(false);
             noBtn.setVisible(false);
             contractNumbLabel.setVisible(false);
-            contractNumTF.setVisible(false);
-            connection.close();
+
         }
     }
 

@@ -1,8 +1,9 @@
-package com.example.advertisementfirmcourseproject;
+package com.example.advertisementfirmcourseproject.UserControllers;
 
 import SQL.InteractionsInterface.CustomerInteractions.SQLCustomerContractsInteractions;
 import SQL.InteractionsInterface.CustomerInteractions.SQLCustomerDesignInteractions;
 import SQL.InteractionsInterface.SQLInteractions;
+import com.example.advertisementfirmcourseproject.AdvertisementFirm;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

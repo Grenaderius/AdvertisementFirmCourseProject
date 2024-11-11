@@ -1,5 +1,6 @@
 package com.example.advertisementfirmcourseproject;
 
+import com.example.advertisementfirmcourseproject.LoginController.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
