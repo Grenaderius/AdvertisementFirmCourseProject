@@ -26,12 +26,12 @@ public class CheckDataForLogin {
     private final PostgreSQLConnection postgreSQLConnection = new PostgreSQLConnection();
     private FXMLLoader fxmlLoader;
 
-    public String checkData(String login, String pass, Stage stage){
+    public boolean checkData(String login, String pass, Stage stage){
         this.stage = stage;
         return checkDataForOwners(login, pass);
     }
 
-    private String checkDataForOwners(String login, String pass){
+    private boolean checkDataForOwners(String login, String pass){
         Connection connection = postgreSQLConnection.connect();
         Statement stmt = null;
         ResultSet rs = null;
@@ -60,7 +60,7 @@ public class CheckDataForLogin {
 
                     stage.show();
 
-                    return "Є власник";
+                    return true;
                 }
             }
 
@@ -80,7 +80,7 @@ public class CheckDataForLogin {
         return checkDataForDesigners(login, pass);
     }
 
-    private String checkDataForDesigners(String login, String pass){
+    private boolean checkDataForDesigners(String login, String pass){
         Connection connection = postgreSQLConnection.connect();
         Statement stmt = null;
         ResultSet rs = null;
@@ -112,7 +112,7 @@ public class CheckDataForLogin {
                     controller.setImage(imageSizeChanger.changeSize(file, 400, 400));
                     stage.show();
 
-                    return "Є дизайнер";
+                    return true;
                 }
             }
 
@@ -132,7 +132,7 @@ public class CheckDataForLogin {
         return checkDataForManager(login, pass);
     }
 
-    private String checkDataForManager(String login, String pass){
+    private boolean checkDataForManager(String login, String pass){
         Connection connection = postgreSQLConnection.connect();
         Statement stmt = null;
         ResultSet rs = null;
@@ -146,7 +146,7 @@ public class CheckDataForLogin {
                 String loginFormDB = rs.getString("manager_initials");
                 String passFromDB = rs.getString("pass");
 
-                if(loginFormDB.equals(login) && passFromDB.equals(pass)) return "Є Менеджер";
+                if(loginFormDB.equals(login) && passFromDB.equals(pass)) return true;
             }
 
         } catch (SQLException e) {
@@ -166,7 +166,7 @@ public class CheckDataForLogin {
     }
 
 
-    private String checkDataForCustomers(String login, String pass){
+    private boolean checkDataForCustomers(String login, String pass){
         Connection connection = postgreSQLConnection.connect();
         Statement stmt = null;
         ResultSet rs = null;
@@ -195,7 +195,7 @@ public class CheckDataForLogin {
                     controller.setInitials(login);
 
                     stage.show();
-                    return "Є Покупець";/*перехід до наст вікна*/
+                    return true;
                 }
             }
 
@@ -215,7 +215,7 @@ public class CheckDataForLogin {
         return checkDataForEmployees(login, pass);
     }
 
-    private String checkDataForEmployees(String login, String pass){
+    private boolean checkDataForEmployees(String login, String pass){
         Connection connection = postgreSQLConnection.connect();
         Statement stmt = null;
         ResultSet rs = null;
@@ -229,7 +229,7 @@ public class CheckDataForLogin {
                 String loginFormDB = rs.getString("employee_initials");
                 String passFromDB = rs.getString("pass");
 
-                if(loginFormDB.equals(login) && passFromDB.equals(pass)) return "ВОНО ПРАЦЮЄЄЄЄЄЄЄЄ!"; //return true;
+                if(loginFormDB.equals(login) && passFromDB.equals(pass)) return true;
             }
 
         } catch (SQLException e) {
@@ -244,6 +244,6 @@ public class CheckDataForLogin {
             }
         }
 
-        return "Не правильний логін або пароль!!!";
+        return false;
     }
 }

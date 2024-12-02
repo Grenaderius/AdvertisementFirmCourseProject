@@ -69,7 +69,7 @@ public class SQLOwnerReportsInteractions  implements SQLInteractions {
             String workerInitials = rs.getString("initials");
 
             String employeeId = rs.getString("employee_id");
-            String workerType = employeeId == null ? "Працівник: " : "Менеджер: ";
+            String workerType = employeeId == null ? "Менеджер: " : "Працівник: ";
 
             AnchorPane designPane = createReportsPane(nameOfReport, workerInitials, reportDate, workerType);
             vbox.getChildren().add(designPane);

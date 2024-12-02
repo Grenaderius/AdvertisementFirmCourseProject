@@ -27,7 +27,7 @@ public class CustomerController {
     AnchorPane viewDesignsAnchorPane;
 
     public void setInitials(String initials) {
-        helloLabel.setText("Вітаємо, " + initials + "!");
+        helloLabel.setText("Вітаємо в акаунті замовника, " + initials + "!");
         helloLabel.setWrapText(true);
         helloLabel.setMaxWidth(550);
         this.initials = initials;

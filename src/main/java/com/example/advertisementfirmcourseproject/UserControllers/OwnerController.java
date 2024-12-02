@@ -29,7 +29,7 @@ public class OwnerController {
 
     @FXML
     public void setInitials(String initials) {
-        initialsLabel.setText("Вітаємо, " + initials + "!");
+        initialsLabel.setText("Вітаємо в акаунті власника, " + initials + "!");
         initialsLabel.setWrapText(true);
         initialsLabel.setMaxWidth(550);
         this.initials = initials;
